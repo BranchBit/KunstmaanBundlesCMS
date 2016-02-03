@@ -82,6 +82,7 @@ class NodeAdminController extends Controller
         $this->securityContext = $this->container->get('security.context');
         $this->user = $this->securityContext->getToken()->getUser();
         $this->aclHelper = $this->container->get('kunstmaan_admin.acl.helper');
+        $this->router = $this->container->get('router');
     }
 
     /**
@@ -95,7 +96,7 @@ class NodeAdminController extends Controller
         $this->init();
 
         /* @var AdminList $adminlist */
-        $adminlist = $this->get('kunstmaan_adminlist.factory')->createList(new NodeAdminListConfigurator($this->em, $this->aclHelper, $this->locale, PermissionMap::PERMISSION_EDIT));
+        $adminlist = $this->get('kunstmaan_adminlist.factory')->createList(new NodeAdminListConfigurator($this->em, $this->aclHelper, $this->locale, PermissionMap::PERMISSION_VIEW, $this->router));
         $adminlist->bindRequest($this->getRequest());
 
         return array(

@@ -88,6 +88,13 @@
                         </a>
                     {% endif %}
 
+                    {% if adminlist.canView(item) %}
+                        <a href="{{ path(adminlist.getViewUrlFor(item)["path"], adminlist.getViewUrlFor(item)[("params")] ) }}" target="_blank" class="link--text table__actions__item">
+                            <i class="fa fa-eye"></i>
+                            View
+                        </a>
+                    {% endif %}
+
                     {% if adminlist.canDelete(item) %}
                         {% include 'KunstmaanAdminListBundle:AdminListTwigExtension:sure-modal.html.twig' %}
                         <a href="#" data-toggle="modal" data-target="#sure-modal-{{ item.id }}" class="link--text link--danger table__actions__item">

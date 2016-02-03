@@ -274,6 +274,11 @@ abstract class AbstractAdminListConfigurator implements AdminListConfiguratorInt
         return true;
     }
 
+    public function canView($item)
+    {
+        return false;
+    }
+
     /**
      * Configure if it's possible to delete the given $item
      *

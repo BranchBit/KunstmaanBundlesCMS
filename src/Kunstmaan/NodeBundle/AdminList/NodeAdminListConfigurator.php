@@ -3,6 +3,7 @@
 namespace Kunstmaan\NodeBundle\AdminList;
 
 use Kunstmaan\AdminBundle\Helper\Security\Acl\AclHelper;
+use Kunstmaan\AdminBundle\Helper\Security\Acl\Permission\PermissionMap;
 use Kunstmaan\AdminListBundle\AdminList\FilterType\ORM\DateFilterType;
 use Kunstmaan\AdminListBundle\AdminList\FilterType\ORM\BooleanFilterType;
 use Kunstmaan\AdminListBundle\AdminList\FilterType\ORM\StringFilterType;
@@ -83,12 +84,30 @@ class NodeAdminListConfigurator extends AbstractDoctrineORMAdminListConfigurator
         );
     }
 
+    public function getViewUrlFor($item)
+    {
+        return array(
+            'path'   => '_slug_preview',
+            'params' => ['_locale' => $this->locale, 'url' => $item->geturl()]
+        );
+    }
+
     /**
      * @return bool
      */
     public function canAdd()
     {
         return false;
+    }
+
+    public function canView($item)
+    {
+        return $this->aclHelper->getSecurityContext()->isGranted(PermissionMap::PERMISSION_VIEW, $item->getNode());
+    }
+
+    public function canEdit($item)
+    {
+        return $this->aclHelper->getSecurityContext()->isGranted(PermissionMap::PERMISSION_EDIT, $item->getNode());
     }
 
     /**

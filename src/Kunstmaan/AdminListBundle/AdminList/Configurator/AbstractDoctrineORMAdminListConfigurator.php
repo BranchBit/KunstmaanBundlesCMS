@@ -9,7 +9,6 @@ use Doctrine\ORM\Query;
 use Kunstmaan\AdminBundle\Helper\Security\Acl\AclHelper;
 use Kunstmaan\AdminBundle\Helper\Security\Acl\Permission\PermissionDefinition;
 use Kunstmaan\AdminListBundle\AdminList\FilterType\ORM\AbstractORMFilterType;
-use Kunstmaan\AdminListBundle\AdminList\Configurator\AbstractAdminListConfigurator;
 use Kunstmaan\AdminListBundle\AdminList\Filter;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
@@ -42,7 +41,7 @@ abstract class AbstractDoctrineORMAdminListConfigurator extends AbstractAdminLis
     /**
      * @var AclHelper
      */
-    private $aclHelper = null;
+    protected $aclHelper = null;
 
     /**
      * @param EntityManager $em        The entity manager

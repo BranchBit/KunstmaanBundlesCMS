@@ -75,7 +75,7 @@ class PageMenuAdaptor implements MenuAdaptorInterface
         } else {
             $treeNodes     = $this->getTreeNodes(
                 $request->getLocale(),
-                PermissionMap::PERMISSION_EDIT,
+                PermissionMap::PERMISSION_VIEW,
                 $this->aclNativeHelper,
                 true
             );
