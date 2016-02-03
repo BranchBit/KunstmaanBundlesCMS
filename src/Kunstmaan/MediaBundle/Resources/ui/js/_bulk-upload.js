@@ -14,7 +14,6 @@ kunstmaanMediaBundle.bulkUpload = (function(window, undefined) {
         var $uploader = $('#bulk-upload'),
             url = $uploader.data('url');
 
-
         var $fileList = $('#bulk-upload__file-list'),
             $uploadWrapper = $('#bulk-button-wrapper--upload'),
             $completedWrapper = $('#bulk-button-wrapper--completed'),
@@ -74,7 +73,7 @@ kunstmaanMediaBundle.bulkUpload = (function(window, undefined) {
                     $fileLine.addClass('list-group-item-success');
 
                     var obj = null;
-                    obj = JSON.parse(jsonString);
+                    obj = JSON.parse(res.response);
 
                     if (obj.error) {
                         $fileLine.addClass('list-group-item-danger');
