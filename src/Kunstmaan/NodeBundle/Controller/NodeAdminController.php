@@ -75,11 +75,6 @@ class NodeAdminController extends Controller
     protected $aclHelper;
 
     /**
-     * @var ChainRouter $router
-     */
-    protected $router;
-
-    /**
      * init
      *
      * @param Request $request
@@ -91,7 +86,6 @@ class NodeAdminController extends Controller
         $this->authorizationChecker = $this->get('security.authorization_checker');
         $this->user                 = $this->getUser();
         $this->aclHelper            = $this->get('kunstmaan_admin.acl.helper');
-        $this->router               = $this->container->get('router');
     }
 
     /**
@@ -110,8 +104,7 @@ class NodeAdminController extends Controller
             $this->em,
             $this->aclHelper,
             $this->locale,
-            PermissionMap::PERMISSION_VIEW,
-            $this->router
+            PermissionMap::PERMISSION_VIEW
         );
         $nodeAdminListConfigurator->setDomainConfiguration($this->get('kunstmaan_admin.domain_configuration'));
         $nodeAdminListConfigurator->setShowAddHomepage($this->authorizationChecker->isGranted('ROLE_SUPER_ADMIN'));
